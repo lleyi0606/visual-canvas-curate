@@ -6,6 +6,9 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/gallery-9.jpg";
 
 interface GalleryItem {
   id: number;
@@ -71,6 +74,33 @@ const galleryItems: GalleryItem[] = [
     image: gallery6,
     span: 2,
     description: "Night lights creating an urban dreamscape"
+  },
+  {
+    id: 7,
+    title: "Digital Dream",
+    category: "Experimental",
+    date: "September 2023",
+    image: gallery7,
+    span: 1,
+    description: "Exploration of digital textures"
+  },
+  {
+    id: 8,
+    title: "Color Burst",
+    category: "Modern Art",
+    date: "August 2023",
+    image: gallery8,
+    span: 1,
+    description: "Vibrant display of color and form"
+  },
+  {
+    id: 9,
+    title: "Silent Waves",
+    category: "Minimalism",
+    date: "July 2023",
+    image: gallery9,
+    span: 1,
+    description: "Gentle rhythm captured in minimalist style"
   }
 ];
 
@@ -89,9 +119,11 @@ const GalleryGrid = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
-          {galleryItems.map((item) => (
-            <Card
+        {/* Horizontal scrolling gallery with 2 fixed rows */}
+        <div className="overflow-x-auto">
+          <div className="grid grid-flow-col auto-cols-[200px] grid-rows-2 gap-6 auto-rows-[200px]">
+            {galleryItems.map((item) => (
+              <Card
               key={item.id}
               className={`gallery-item hover-lift cursor-pointer group ${
                 item.span === 2 ? 'lg:col-span-2' : ''
@@ -124,6 +156,7 @@ const GalleryGrid = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
         </div>
 
         <div className="text-center mt-12">

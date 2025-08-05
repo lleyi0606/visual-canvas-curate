@@ -7,7 +7,7 @@ const Footer = () => {
             <h3 className="text-xl font-serif font-bold mb-4">ATELIER</h3>
             <p className="text-muted-foreground max-w-md">
               Creating visual narratives through photography, digital art, and design. 
-              Based in San Francisco, working globally.
+              Based in Singapore, working globally.
             </p>
           </div>
           
@@ -66,7 +66,7 @@ const Footer = () => {
         
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 Atelier. All rights reserved. Crafted with passion in San Francisco.
+            © 2024 Atelier. All rights reserved. Crafted with passion in Singapore.
           </p>
         </div>
       </div>
