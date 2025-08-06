@@ -41,7 +41,7 @@ const PerspectiveGrid = () => {
       defaults: { ease: "none" },
       scrollTrigger: {
         trigger: ".grid_wrap",
-        start: "top bottom+=5%",
+        start: "top bottom-=50%",
         end: "bottom top-=5%",
         scrub: true,
         // markers: true, // Optional: for debugging
@@ -64,7 +64,7 @@ const PerspectiveGrid = () => {
         transformOrigin: "50% 0%",
         z: () => gsap.utils.random(-4000, -2000),
         rotationX: () => gsap.utils.random(-65, -25),
-        filter: "brightness(0%)",
+        filter: "brightness(30%)",
       })
       .to(
         ".grid_item",
@@ -101,7 +101,7 @@ const PerspectiveGrid = () => {
     <div className="z-10 w-full overflow-hidden bg-gray-800 dark:bg-gray-900">
       {/* Artistic Header Section */}
       <motion.div 
-        className="text-center py-20 px-4"
+        className="text-center py-8 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -161,7 +161,7 @@ const PerspectiveGrid = () => {
           Immersive Visual Journey
         </motion.p>
       </motion.div>
-      <div className="relative w-full py-[20vh]">
+      <div className="relative w-full py-[5vh]">
         <div
           ref={grid}
           className="grid w-full place-items-center"
