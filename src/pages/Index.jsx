@@ -1,7 +1,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ImageCollage from "@/components/ImageCollage";
-import GalleryGrid from "@/components/GalleryGrid";
+import HeroImageCollage from "@/components/HeroImageCollage";
+import PerspectiveGrid from "@/components/PerspectiveGrid";
+import HorizontalScrollGrid from "@/components/HorizontalScrollGrid";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -12,8 +13,9 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ImageCollage />
-        <GalleryGrid />
+        <HeroImageCollage />
+        <PerspectiveGrid />
+        <HorizontalScrollGrid />
         <About />
         <Contact />
       </main>
