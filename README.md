@@ -1,73 +1,109 @@
-# Welcome to your Lovable project
+# Atelier - Visual Artist Portfolio
 
-## Project info
+A modern, responsive portfolio website for visual artists built with React and cutting-edge web technologies.
 
-**URL**: https://lovable.dev/projects/435495bb-1cda-4209-ad63-f83b4767bab7
+## Features
 
-## How can I edit this code?
+- **Responsive Design**: Optimized for all devices and screen sizes
+- **Smooth Animations**: Built with Framer Motion for fluid interactions
+- **Modern UI**: Clean, minimalist design with shadcn/ui components
+- **Image Optimization**: Smart loading and caching for gallery images
+- **Horizontal Scroll Gallery**: Unique scrolling experience for showcasing artwork
+- **Performance Optimized**: Fast loading with Vite and optimized assets
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **React 18** - Modern React with hooks and functional components
+- **Vite** - Fast build tool and development server
+- **Framer Motion** - Advanced animations and transitions
+- **Tailwind CSS** - Utility-first styling framework
+- **shadcn/ui** - High-quality accessible UI components
+- **GSAP** - Professional-grade animations
+- **Lenis** - Smooth scrolling library
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/435495bb-1cda-4209-ad63-f83b4767bab7) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (version 18 or higher)
+- npm or yarn package manager
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd visual-canvas-curate
+```
 
-Follow these steps:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── Header.jsx      # Navigation header
+│   ├── Hero.jsx        # Hero section
+│   ├── HorizontalScrollGrid.jsx  # Gallery component
+│   └── ...
+├── hooks/              # Custom React hooks
+├── pages/              # Page components
+├── assets/             # Static assets and images
+└── lib/                # Utility functions
+```
 
-This project is built with:
+## Customization
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Adding New Gallery Items
 
-## How can I deploy this project?
+Edit the `galleryItems` array in `src/components/HorizontalScrollGrid.jsx`:
 
-Simply open [Lovable](https://lovable.dev/projects/435495bb-1cda-4209-ad63-f83b4767bab7) and click on Share -> Publish.
+```javascript
+const galleryItems = [
+  {
+    id: 1,
+    title: "Your Artwork Title",
+    category: "Category",
+    date: "Month Year",
+    image: yourImage,
+    span: 1, // 1 or 2 for grid layout
+    description: "Description of your artwork"
+  },
+  // ... more items
+];
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Styling
 
-Yes, you can!
+The project uses Tailwind CSS for styling. Customize the theme in `tailwind.config.js` and global styles in `src/index.css`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request

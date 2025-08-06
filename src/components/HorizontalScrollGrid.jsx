@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { useOptimizedImage, preloadImages } from "@/hooks/useOptimizedImage";
+import ImageSkeleton from "@/components/ImageSkeleton";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -129,38 +131,77 @@ const HorizontalScrollCarousel = ({ items }) => {
 };
 
 const GalleryCard = ({ item }) => {
+  const { imgRef, loading, error, imageSrc, inView } = useOptimizedImage(item.image, {
+    threshold: 0.1,
+    rootMargin: '100px' // Start loading when image is 100px away from viewport
+  });
+
   return (
     <Card
+      ref={imgRef}
       className="group relative h-[675px] w-[675px] overflow-hidden rounded-lg border border-gray-400 flex-shrink-0 cursor-pointer"
     >
       <CardContent className="p-0 h-full relative">
-        <img
-          src={item.image}
-          alt={item.title}
-          className="w-full h-full object-cover"
-        />
-        <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end`}>
-          <div className="p-6 text-white">
-            <p className="text-sm uppercase tracking-wider text-accent mb-2">
-              {item.category}
-            </p>
-            <h3 className="text-xl font-serif font-bold mb-2">
-              {item.title}
-            </h3>
-            <p className="text-sm text-gray-300 mb-2">
-              {item.description}
-            </p>
-            <p className="text-xs text-gray-400">
-              {item.date}
-            </p>
+        {/* Loading skeleton */}
+        {loading && !error && (
+          <ImageSkeleton className="w-full h-full" />
+        )}
+        
+        {/* Error state */}
+        {error && (
+          <div className="w-full h-full bg-muted flex items-center justify-center">
+            <p className="text-muted-foreground">Failed to load image</p>
           </div>
-        </div>
+        )}
+        
+        {/* Actual image with smooth fade-in */}
+        {imageSrc && !loading && (
+          <motion.img
+            src={imageSrc}
+            alt={item.title}
+            className="w-full h-full object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
+        )}
+        
+        {/* Overlay - only show when image is loaded */}
+        {imageSrc && !loading && (
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+          >
+            <div className="p-6 text-white">
+              <p className="text-sm uppercase tracking-wider text-accent mb-2">
+                {item.category}
+              </p>
+              <h3 className="text-xl font-serif font-bold mb-2">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-300 mb-2">
+                {item.description}
+              </p>
+              <p className="text-xs text-gray-400">
+                {item.date}
+              </p>
+            </div>
+          </motion.div>
+        )}
       </CardContent>
     </Card>
   );
 };
 
 const HorizontalScrollGrid = () => {
+  // Preload first few images for better initial experience
+  useEffect(() => {
+    const imagesToPreload = galleryItems.slice(0, 3).map(item => item.image);
+    preloadImages(imagesToPreload);
+  }, []);
+
   return (
     <section id="works" className="pt-48 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
